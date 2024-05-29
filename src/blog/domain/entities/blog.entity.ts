@@ -7,4 +7,15 @@ export class Blog {
     this.content = content;
     this.userId = userId;
   }
+  getTitle() {
+    return this.title;
+  }
+
+  getContent() {
+    return this.content;
+  }
+
+  getUserId() {
+    return this.userId;
+  }
 }
