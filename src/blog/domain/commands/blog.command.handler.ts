@@ -13,13 +13,15 @@ export class CreateBlogHandler implements ICommandHandler<CreateBlogCommand> {
     const blog = await this.blogService.create(
       new Blog(command.title, command.content, command.userId),
     );
-    this.eventBus.publish(
+    blog.apply(
       new BlogCreatedEvent(
         blog.getTitle(),
         blog.getContent(),
         blog.getUserId(),
       ),
-    );
+    ); // call internal handler (aggregate)
+    this.eventBus.publishAll(blog.getUncommittedEvents()); // call external handler
+    blog.commit();
     return blog;
   }
 }

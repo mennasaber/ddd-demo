@@ -7,7 +7,7 @@ export class BlogCreatedEventHandler
   handle(event: BlogCreatedEvent) {
     //NOTE: We can call service here
     console.log(
-      `blog ${event.title} created successfully for user with id ${event.userId}`,
+      `External: blog ${event.title} created successfully for user with id ${event.userId}`,
     );
   }
 }
