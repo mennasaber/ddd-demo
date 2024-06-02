@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { User } from '../entities/user.entity';
+import { UserDomain } from '../entities/user.entity';
 import { IUserRepository } from '../repositories/user.repository';
 @Injectable()
 export class UserService {
@@ -7,7 +7,7 @@ export class UserService {
     @Inject('IUserRepository') private userRepository: IUserRepository,
   ) {}
 
-  create(user: User) {
+  create(user: UserDomain) {
     return this.userRepository.create(user);
   }
 

@@ -1,8 +1,12 @@
+import { AutoMap } from '@automapper/classes';
 import { AggregateRoot } from '@nestjs/cqrs';
 
-export class User extends AggregateRoot {
+export class UserDomain extends AggregateRoot {
+  @AutoMap()
   private name: string;
+  @AutoMap()
   private email: string;
+  @AutoMap()
   private phoneNumber: string;
   constructor(name: string, email: string, phoneNumber: string) {
     super();

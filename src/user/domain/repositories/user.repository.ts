@@ -1,4 +1,4 @@
 import { IBaseRepository } from '../../../common/repositories/IBaseRepository';
-import { User } from '../entities/user.entity';
+import { UserDomain } from '../entities/user.entity';
 
-export interface IUserRepository extends IBaseRepository<User> {}
+export interface IUserRepository extends IBaseRepository<UserDomain> {}

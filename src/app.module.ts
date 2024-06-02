@@ -1,3 +1,5 @@
+import { classes } from '@automapper/classes';
+import { AutomapperModule } from '@automapper/nestjs';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as path from 'path';
@@ -22,6 +24,9 @@ import { UserModule } from './user/user.module';
       entities: [User, Blog],
       migrationsRun: false,
       migrations: [path.resolve(__dirname, 'common/migrations/*{.ts,.js}')],
+    }),
+    AutomapperModule.forRoot({
+      strategyInitializer: classes(),
     }),
   ],
   controllers: [AppController],
