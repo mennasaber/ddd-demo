@@ -6,6 +6,8 @@ import { FindAllHandler } from './domain/queries/blog.query.handler';
 import { BlogService } from './domain/services/blog.service';
 import { BlogController } from './infrastructure/adapters/controllers/blog.controller';
 import { Blog } from './infrastructure/persistence/entities/blog.entity';
+import { BlogFactory } from './infrastructure/persistence/factories/blog.factory';
+import { BlogProfile } from './infrastructure/persistence/profiles/blog.profile';
 import { BlogRepository } from './infrastructure/persistence/repositories/blog.repository';
 
 @Module({
@@ -16,6 +18,8 @@ import { BlogRepository } from './infrastructure/persistence/repositories/blog.r
     { provide: 'IBlogRepository', useClass: BlogRepository },
     CreateBlogHandler,
     FindAllHandler,
+    BlogFactory,
+    BlogProfile,
   ],
 })
 export class BlogModule {}

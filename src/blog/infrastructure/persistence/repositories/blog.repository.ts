@@ -1,17 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Blog } from '../../../domain/entities/blog.entity';
+import { BlogDomain } from '../../../domain/entities/blog.entity';
 import { IBlogRepository } from '../../../domain/repositories/blog.repository';
+import { Blog } from '../entities/blog.entity';
+import { BlogFactory } from '../factories/blog.factory';
 @Injectable()
 export class BlogRepository implements IBlogRepository {
   constructor(
     @InjectRepository(Blog) private blogRepository: Repository<Blog>,
+    private blogFactory: BlogFactory,
   ) {}
-  create(entity: Blog): Promise<Blog> {
-    return this.blogRepository.save(entity);
+  async create(domain: BlogDomain): Promise<BlogDomain> {
+    const blog = this.blogFactory.toEntity(domain);
+    return this.blogFactory.toDomain(await this.blogRepository.save(blog));
   }
-  findAll(): Promise<Blog[]> {
-    return this.blogRepository.find();
+  async findAll(): Promise<BlogDomain[]> {
+    return this.blogFactory.toDomainList(await this.blogRepository.find());
   }
 }

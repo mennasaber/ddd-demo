@@ -1,4 +1,6 @@
-export interface IBaseRepository<T> {
-  create(entity: T): Promise<T>;
-  findAll(): Promise<T[]>;
+import { AggregateRoot } from '@nestjs/cqrs';
+
+export interface IBaseRepository<TDomain extends AggregateRoot> {
+  create(domain: TDomain): Promise<TDomain>;
+  findAll(): Promise<TDomain[]>;
 }

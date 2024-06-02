@@ -1,4 +1,4 @@
 import { IBaseRepository } from '../../../common/repositories/IBaseRepository';
-import { Blog } from '../entities/blog.entity';
+import { BlogDomain } from '../entities/blog.entity';
 
-export interface IBlogRepository extends IBaseRepository<Blog> {}
+export interface IBlogRepository extends IBaseRepository<BlogDomain> {}

@@ -3,6 +3,8 @@ import { AggregateRoot } from '@nestjs/cqrs';
 
 export class UserDomain extends AggregateRoot {
   @AutoMap()
+  private id: string;
+  @AutoMap()
   private name: string;
   @AutoMap()
   private email: string;

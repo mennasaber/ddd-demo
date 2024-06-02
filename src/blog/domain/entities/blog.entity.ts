@@ -1,9 +1,15 @@
+import { AutoMap } from '@automapper/classes';
 import { AggregateRoot } from '@nestjs/cqrs';
 import { BlogCreatedEvent } from '../events/blog.event';
 
-export class Blog extends AggregateRoot {
+export class BlogDomain extends AggregateRoot {
+  @AutoMap()
+  private id: string;
+  @AutoMap()
   private title: string;
+  @AutoMap()
   private content: string;
+  @AutoMap()
   private userId: number;
   constructor(title: string, content: string, userId: number) {
     super();
